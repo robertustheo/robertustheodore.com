@@ -380,87 +380,150 @@
         }
 
         .timeline {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
+            padding-left: 80px;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
+            left: 30px;
+            top: 0;
+            width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--color-harvest), transparent);
+            background: linear-gradient(to bottom, transparent, var(--color-harvest) 10%, var(--color-harvest) 90%, transparent);
+            border-radius: 3px;
         }
 
         .timeline-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 4rem;
             position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
         }
 
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            text-align: right;
-            padding-right: 3rem;
-            padding-left: 0;
-        }
-
-        .timeline-content {
-            flex: 1;
-            padding-left: 3rem;
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
         .timeline-dot {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background: var(--color-harvest);
             border-radius: 50%;
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: -58px;
+            top: 8px;
             z-index: 2;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--color-earth);
         }
 
         .timeline-item:hover .timeline-dot {
-            transform: translateX(-50%) scale(1.5);
+            transform: scale(1.4);
             box-shadow: 0 0 20px rgba(196, 163, 90, 0.5);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            border: 1px solid rgba(196, 163, 90, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-content {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(196, 163, 90, 0.4);
+            transform: translateX(5px);
+        }
+
+        .timeline-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
 
         .timeline-year {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--color-harvest);
-            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .timeline-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--color-cream);
-            margin-bottom: 0.5rem;
         }
 
         .timeline-org {
-            font-size: 0.9rem;
+            display: block;
+            font-size: 0.8rem;
             color: var(--color-warm);
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            opacity: 0.9;
         }
 
         .timeline-desc {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--color-cream);
-            opacity: 0.8;
-            line-height: 1.7;
+            opacity: 0.85;
+            line-height: 1.75;
+        }
+
+        /* Mobile Timeline */
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 50px;
+            }
+
+            .timeline::before {
+                left: 15px;
+                width: 2px;
+            }
+
+            .timeline-dot {
+                left: -42px;
+                width: 14px;
+                height: 14px;
+            }
+
+            .timeline-item {
+                padding-left: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-content {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .timeline-year {
+                font-size: 1.1rem;
+            }
+
+            .timeline-title {
+                font-size: 1.05rem;
+            }
+
+            .timeline-org {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+            }
+
+            .timeline-desc {
+                font-size: 0.9rem;
+            }
         }
 
         /* Impact Section */
@@ -847,31 +910,6 @@
                 gap: 2rem;
             }
 
-            .timeline::before {
-                left: 0;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(odd) {
-                flex-direction: column;
-            }
-
-            .timeline-dot {
-                left: 0;
-                transform: translateX(0);
-            }
-
-            .timeline-item:hover .timeline-dot {
-                transform: translateX(0) scale(1.5);
-            }
-
-            .timeline-content,
-            .timeline-item:nth-child(odd) .timeline-content {
-                padding-left: 2rem;
-                padding-right: 0;
-                text-align: left;
-            }
-
             .values-grid {
                 grid-template-columns: 1fr;
             }
@@ -886,6 +924,101 @@
 
             .connect-wrapper {
                 padding: 2rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy-quote {
+                font-size: 1.25rem;
+            }
+
+            .philosophy-quote::before,
+            .philosophy-quote::after {
+                font-size: 2.5rem;
+            }
+
+            .philosophy-quote::before {
+                left: 0;
+                top: -15px;
+            }
+
+            .philosophy-quote::after {
+                right: 0;
+                bottom: -25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .connect-info h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about,
+            .impact,
+            .philosophy,
+            .journey,
+            .connect {
+                padding: 3rem 1.25rem;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 0.4rem 1rem;
+            }
+
+            .connect-wrapper {
+                padding: 1.5rem;
+            }
+
+            .connect-form input,
+            .connect-form textarea {
+                padding: 0.875rem 1rem;
+            }
+
+            .about-highlight {
+                padding: 1.5rem;
+            }
+
+            .about-highlight blockquote {
+                font-size: 1.1rem;
+            }
+
+            footer {
+                padding: 2rem 1.5rem;
             }
         }
 
@@ -980,8 +1113,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">2021 - Present</span>
-                    <h3 class="timeline-title">Founder & CEO</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">2021 – Present</span>
+                        <h3 class="timeline-title">Founder & CEO</h3>
+                    </div>
                     <span class="timeline-org">Agrari</span>
                     <p class="timeline-desc">Leading a technology-driven agribusiness company focused on improving agricultural harvest quality through internationally patented on-farm and post-harvest treatments that meet global standards.</p>
                 </div>
@@ -989,8 +1124,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">2020</span>
-                    <h3 class="timeline-title">Founder & CEO</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">2020</span>
+                        <h3 class="timeline-title">Founder & CEO</h3>
+                    </div>
                     <span class="timeline-org">Panenpa</span>
                     <p class="timeline-desc">Founded an Agri-Tech company with a mission to simplify and improve the agricultural supply chain, connecting farmers directly with consumers.</p>
                 </div>
@@ -998,8 +1135,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">2017 - 2020</span>
-                    <h3 class="timeline-title">Expert Team Member</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">2017 – 2020</span>
+                        <h3 class="timeline-title">Expert Team Member</h3>
+                    </div>
                     <span class="timeline-org">100 Smart Cities Initiative — Ministry of ICT</span>
                     <p class="timeline-desc">Designed and implemented the National Smart City Program. Led implementation assistance for Denpasar, Sleman, Mataram, and Gunungkidul.</p>
                 </div>
@@ -1007,8 +1146,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">2015 - 2020</span>
-                    <h3 class="timeline-title">Assistant Advisor & Project Manager</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">2015 – 2020</span>
+                        <h3 class="timeline-title">Assistant Advisor & Project Manager</h3>
+                    </div>
                     <span class="timeline-org">Executive Office of the President — Republic of Indonesia</span>
                     <p class="timeline-desc">Contributed to E-Government, led Satu Data Indonesia (national data management reform), and drafted Presidential Decree No. 39/2019. Directed 16 fellowship batches with 110 participants.</p>
                 </div>
@@ -1016,8 +1157,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">YSEALI Fellow</span>
-                    <h3 class="timeline-title">Professional Fellow</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">YSEALI Fellow</span>
+                        <h3 class="timeline-title">Professional Fellow</h3>
+                    </div>
                     <span class="timeline-org">U.S. Department of State — Economic Empowerment</span>
                     <p class="timeline-desc">Selected as a YSEALI Professional Fellow, a prestigious program for top community leaders from ASEAN focused on economic development and leadership.</p>
                 </div>
@@ -1025,8 +1168,10 @@
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">Early Career</span>
-                    <h3 class="timeline-title">Lead Software Engineer</h3>
+                    <div class="timeline-header">
+                        <span class="timeline-year">Early Career</span>
+                        <h3 class="timeline-title">Lead Software Engineer</h3>
+                    </div>
                     <span class="timeline-org">World Bank Group</span>
                     <p class="timeline-desc">Developed software solutions and gained understanding of global development challenges, setting the foundation for a career bridging technology and social impact.</p>
                 </div>
